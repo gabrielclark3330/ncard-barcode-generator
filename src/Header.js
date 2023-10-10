@@ -1,6 +1,7 @@
 import * as cheerio from "cheerio";
 import { useEffect, useState } from "react";
 import React from 'react';
+import lampLogo from "./assets/WindowUnl-removebg.png";
 
 
 async function request(name, setStudents) {
@@ -35,7 +36,7 @@ function Header(props) {
     <div className="p-4 shadow-lg sticky top-0 bg-white">
       <div className="container mx-auto flex items-center justify-between">
         <div>
-          <img src="/WindowUNL-removebg.png" alt="Logo" className="h-12 w-auto" />
+          <img src={lampLogo} alt="Logo" className="h-12 w-auto" />
         </div>
 
         <div className="flex-grow px-4">
