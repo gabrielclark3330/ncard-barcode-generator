@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Header from "./Header";
+import StudentCard from "./StudentCard";
 
 function App() {
+  const [students, setStudents] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header setStudents={setStudents} />
+      {students.map(function (student, i) {
+        return <StudentCard key={i} studentName={student[0]} studentURL={student[1]}/>; 
+      })}
     </div>
   );
 }
