@@ -1,10 +1,10 @@
 import * as cheerio from "cheerio";
 import { useEffect, useState } from "react";
-import React from 'react';
+import React from "react";
 import lampLogo from "./assets/WindowUnl-removebg.png";
 
-
-async function request(name, setStudents) {
+async function PossibleStudentNames(name, setStudents) {
+  const ogName = name;
   const response = await fetch(
     "https://directory.unl.edu/?format=partial&q=" + encodeURIComponent(name)
   );
@@ -13,7 +13,6 @@ async function request(name, setStudents) {
   const $ = cheerio.load(htmlText);
   const students = [];
   if ($("h2").first().text().includes("error")) {
-    //return [];
     setStudents([]);
   } else {
     $("a[class=dcf-txt-decor-hover]").each((idx, ref) => {
@@ -23,15 +22,17 @@ async function request(name, setStudents) {
       //console.log(elem[0].attribs.href);
     });
   }
-
   setStudents(students);
 }
 
 function Header(props) {
   const [searchText, setSearchText] = useState("");
+
   useEffect(() => {
-    request(searchText, props.setStudents);
+    PossibleStudentNames(searchText, props.setStudents);
+    console.log(props.students);
   }, [searchText, props.setStudents]);
+
   return (
     <div className="p-4 shadow-lg sticky top-0 bg-white">
       <div className="container mx-auto flex items-center justify-between">
@@ -44,7 +45,7 @@ function Header(props) {
             type="text"
             placeholder="Search First Last..."
             className="w-full px-6 py-3 bg-gray-200 rounded-lg focus:outline-red-400 focus:shadow-outline"
-            onChange={(evnt) => setSearchText(evnt.target.value)}
+            onChange={(evnt) => {setSearchText(evnt.target.value)}}
           />
         </div>
 

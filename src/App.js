@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Header setStudents={setStudents} />
       {students.map(function (student, i) {
-        return <StudentCard key={i} studentName={student[0]} studentURL={student[1]}/>; 
+        return <StudentCard key={i} studentName={student[0]} studentURL={student[1]} listIndex={i} students={students}/>; 
       })}
     </div>
   );
