@@ -4,7 +4,6 @@ import React from "react";
 import lampLogo from "./assets/WindowUnl-removebg.png";
 
 async function PossibleStudentNames(name, setStudents) {
-  const ogName = name;
   const response = await fetch(
     "https://directory.unl.edu/?format=partial&q=" + encodeURIComponent(name)
   );
@@ -30,7 +29,6 @@ function Header(props) {
 
   useEffect(() => {
     PossibleStudentNames(searchText, props.setStudents);
-    console.log(props.students);
   }, [searchText, props.setStudents]);
 
   return (
